@@ -136,17 +136,16 @@ float calculateWaitingTime(int specialityId, int queueCount[], int specialityTim
 
 float calculateEmergencySurcharge(int urgencyLevel, float baseFee)
 {
-    if(urgencyLevel == 1){
+    if(urgencyLevel == URGENCY_NORMAL){
         return 0;
     }
-    else if (urgencyLevel == 2){
-        return baseFee * 0.20;
+    else if (urgencyLevel == URGENCY_URGENT){
+        return baseFee * (SURCHARGE_URGENT / 100.0);
     }
     else{
-        return baseFee * 0.50;
+        return baseFee * (SURCHARGE_CRITICAL / 100.0);
     }
 }
-
 float calculateTotalWardStayCost(int daysAdmitted, int wardId, float wardRate[])
 {
     if (daysAdmitted == 0) {
