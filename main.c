@@ -384,6 +384,13 @@ void registerPatients(char patientName[][NAME_LENGTH],
         bedNum = allocateBed(wardId[i], bedOccupancy, wardTotalBedCapacity);
         if(bedNum == -1){
             printf("\n  >> Sorry, %s is Full. No beds available.\n", wardName[wardId[i]-1]);
+                    if(bedNum == -1){
+            printf("\n  >> Sorry, %s is Full. No beds available.\n", wardName[wardId[i]-1]);
+            isAdmitted[i] = 0;
+            wardId[i] = 0;
+            daysAdmitted[i] = 0;
+            bedNum = 0;
+        }
         }
     } else {
         wardId[i] = 0;
