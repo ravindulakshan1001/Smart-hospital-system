@@ -1,2 +1,4 @@
 bin/
 obj/
+beds_status.txt
+patient_records.txt
