@@ -56,6 +56,9 @@ void saveBedStatus(int bedOccupancy[][MAX_BED_PER_WARD], int wardCapacity[]);
 void loadBedStatus(int bedOccupancy[][MAX_BED_PER_WARD], int wardCapacity[]);
 void appendPatientRecord(int patientId, char name[], float finalAmount);
 
+//Searches for a patient by ID
+//Adds a new patient to the system
+
 void registerPatients(char patientName[][NAME_LENGTH], int patientAge[], int patientEmergencyLevel[],
                       int specialtyId[], int isAdmitted[], int wardId[], int daysAdmitted[],
                       int specialtyQueueCount[], float patientFinalBill[], float patientDiscount[], int *count);
