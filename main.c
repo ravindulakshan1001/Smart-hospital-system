@@ -1,3 +1,10 @@
+   /*
+    * Smart Hospital & Resource Allocation System
+    * Author  : Ravindu Lakshan
+    * Purpose : Registers patients, allocates ward beds, calculates bills
+    *           and generates hospital performance reports.
+    */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
