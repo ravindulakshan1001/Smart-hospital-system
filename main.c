@@ -68,6 +68,7 @@ void generateSummaryReport(int patientEmergencyLevel[], float patientFinalBill[]
                             char patientName[][NAME_LENGTH], int count,
                             int bedOccupancy[][MAX_BED_PER_WARD], int wardCapacity[]);
 
+   // Reads an integer from the user and repeats until it is between min and max                            
 int getValidInt(int min, int max, char *word)
 {
     int value;
@@ -89,6 +90,8 @@ int getValidInt(int min, int max, char *word)
 
     return value;
 }
+
+// Finds the first free bed in a ward, marks it occupied and returns the bed number (-1 if full)
 int allocateBed(int wardId, int bedOccupancy[][MAX_BED_PER_WARD], int wardCapacity[])
 {
     int bedNum;
@@ -101,6 +104,7 @@ int allocateBed(int wardId, int bedOccupancy[][MAX_BED_PER_WARD], int wardCapaci
     return -1;
 }
 
+// Displays total, occupied and available beds for every ward
 void checkBedStatus(int bedOccupancy[][MAX_BED_PER_WARD], int wardCapacity[])
 {
     int ward, bed, occupiedCount;
@@ -129,11 +133,13 @@ void checkBedStatus(int bedOccupancy[][MAX_BED_PER_WARD], int wardCapacity[])
     getchar();
 }
 
+// Estimates waiting time as queue length x consultation time of the specialty
 float calculateWaitingTime(int specialityId, int queueCount[], int specialityTime[])
 {
     return queueCount[specialityId - 1] * specialityTime[specialityId - 1];
 }
 
+// Calculates the emergency surcharge based on the urgency level
 float calculateEmergencySurcharge(int urgencyLevel, float baseFee)
 {
     if(urgencyLevel == URGENCY_NORMAL){
@@ -146,6 +152,8 @@ float calculateEmergencySurcharge(int urgencyLevel, float baseFee)
         return baseFee * (SURCHARGE_CRITICAL / 100.0);
     }
 }
+
+// Calculates the total ward cost as days admitted x daily bed rate
 float calculateTotalWardStayCost(int daysAdmitted, int wardId, float wardRate[])
 {
     if (daysAdmitted == 0) {
@@ -156,11 +164,13 @@ float calculateTotalWardStayCost(int daysAdmitted, int wardId, float wardRate[])
     }
 }
 
+// Adds consultation fee, surcharge and ward cost to get the gross total
 float calculateGrossTotalBill(float baseConsultanFee, float emegencySurcharge, float totalWardCost)
 {
     return baseConsultanFee + emegencySurcharge + totalWardCost;
 }
 
+// Gives a 15% subsidy for patients younger than 5 or older than 65
 float calculateSubsidyDiscount(int age, float grossTotal)
 {
     if(age < AGE_YOUNG || age > AGE_ADULT){
@@ -169,11 +179,13 @@ float calculateSubsidyDiscount(int age, float grossTotal)
     return 0;
 }
 
+// Subtracts the discount from the gross total
 float calculateFinalAmountPayable(float grossTotal, float discount)
 {
     return grossTotal - discount;
 }
 
+// Prints the formatted admission bill for a patient
 void printBill(int patientId, char patientName[], int age, int specialtyId, int wardId, int isAdmitted,
                int urgencyLevel, int daysAdmitted, float baseFee, float surcharge, float wardCost,
                float grossTotal, float discount, float finalAmount, float waitingTime, int bedNum)
