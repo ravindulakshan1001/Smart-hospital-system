@@ -264,6 +264,7 @@ void printBill(int patientId, char patientName[], int age, int specialtyId, int 
     printf("============================================================\n");
 }
 
+// Writes the bed occupancy of every ward to beds_status.txt
 void saveBedStatus(int bedOccupancy[][MAX_BED_PER_WARD], int wardCapacity[])
 {
     FILE *fp = fopen("beds_status.txt", "w");
@@ -283,6 +284,7 @@ void saveBedStatus(int bedOccupancy[][MAX_BED_PER_WARD], int wardCapacity[])
     fclose(fp);
 }
 
+// Reads saved bed occupancy from beds_status.txt when the program starts
 void loadBedStatus(int bedOccupancy[][MAX_BED_PER_WARD], int wardCapacity[])
 {
     FILE *fp = fopen("beds_status.txt", "r");
@@ -300,6 +302,7 @@ void loadBedStatus(int bedOccupancy[][MAX_BED_PER_WARD], int wardCapacity[])
     fclose(fp);
 }
 
+// Appends one line with patient ID, name and final bill to patient_records.txt
 void appendPatientRecord(int patientId, char name[], float finalAmount)
 {
     FILE *fp = fopen("patient_records.txt", "a");
@@ -313,7 +316,7 @@ void appendPatientRecord(int patientId, char name[], float finalAmount)
     fclose(fp);
 }
 
-
+	// Reads patient details, allocates a bed if admitted, calculates the bill and prints it
 void registerPatients(char patientName[][NAME_LENGTH],
                       int patientAge[],
                       int patientEmergencyLevel[],
@@ -442,6 +445,7 @@ void registerPatients(char patientName[][NAME_LENGTH],
     getchar();
 }
 
+// Sorts patients by emergency level (highest first) using selection sort and displays them
 void sortAndDisplayByPriority(char patientName[][NAME_LENGTH], int patientEmergencyLevel[], int count)
 {
     int sortedIndex[MAX_PATIENTS];
@@ -481,6 +485,7 @@ void sortAndDisplayByPriority(char patientName[][NAME_LENGTH], int patientEmerge
     getchar();
 }
 
+// Shows patient counts, revenue, discounts, bed occupancy % and the highest paying patient
 void generateSummaryReport(int patientEmergencyLevel[], float patientFinalBill[], float patientDiscount[],
                             char patientName[][NAME_LENGTH], int count,
                             int bedOccupancy[][MAX_BED_PER_WARD], int wardCapacity[])
