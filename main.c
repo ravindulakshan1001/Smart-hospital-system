@@ -316,6 +316,10 @@ void registerPatients(char patientName[][NAME_LENGTH],
                       int *count)
 {
     int i = *count;
+    if(i >= MAX_PATIENTS){
+        printf("\n  >> Patient limit reached. Cannot register more patients.\n");
+        return;
+    }
 
     printf("\n============================================================\n");
     printf("                   PATIENT REGISTRATION\n");
