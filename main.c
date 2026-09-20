@@ -338,7 +338,7 @@ void registerPatients(char patientName[][NAME_LENGTH],
 
     char fullName[NAME_LENGTH];
     printf("%-20s: ", "Patient Name");
-    scanf(" %[^\n]", fullName);
+    scanf(" %40[^\n]", fullName);
 
     sprintf(patientName[i], "%s %s", titleText, fullName);
 
