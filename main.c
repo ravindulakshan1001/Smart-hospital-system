@@ -544,8 +544,8 @@ int main()
         printf("   4. Generate Performance Report\n");
         printf("   5. Exit\n");
         printf("============================================================\n");
-        printf("Please Enter Your Choice: ");
-        scanf("%d", &choice);
+        choice = getValidInt(1, 5, "Enter Your Choice");
+       
 
         switch(choice){
             case 1:
